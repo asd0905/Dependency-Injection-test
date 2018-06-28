@@ -1,0 +1,38 @@
+<style>
+    .error { border: 1px solid red; }
+</style>
+<h2>Demo Form: Sku width Builder</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" >
+    <div [class.error]="!sku1.valid&&sku1.touched">
+        <input type="text" id="skuInput1" placeholder="SKU1" [formControl]="sku1">
+        <ngb-alert [dismissible]="false" type="danger" *ngIf="sku1.hasError('required')">sku1 is required</ngb-alert>
+        <!--<ngb-alert [dismissible]="true" *ngIf="!closed" (click)="closed=true">sku1 is invalid</ngb-alert>
+        <ngb-alert type="info" *ngIf="!closed1" (click)="closed1=true">sku1 is invalid</ngb-alert>-->
+    </div>
+    <div [class.error]="!sku2.valid&&sku2.touched">
+        <input type="text" id="skuInput2" placeholder="SKU2" [formControl]="sku2">
+        <ngb-alert [dismissible]="false" type="danger" *ngIf="!sku2.valid">sku2 is invalid</ngb-alert>
+        <ngb-alert [dismissible]="false" type="success" *ngIf="sku2.hasError('required')">sku2 is required</ngb-alert>
+        <ngb-alert [dismissible]="false" type="info" *ngIf="sku2.hasError('invalidSku')">sku2 is invalidSku</ngb-alert>
+    </div>
+    <div [class.error]="!sku3.valid&&sku3.touched">
+        <input type="text" id="skuInput3" placeholder="SKU3" [formControl]="sku3">
+        <ngb-alert [dismissible]="false" type="danger" *ngIf="!sku3.valid">sku3 is invalid</ngb-alert>
+        <ngb-alert [dismissible]="false" type="success" *ngIf="sku3.hasError('required')">sku3 is required</ngb-alert>
+        <ngb-alert [dismissible]="false" type="info" *ngIf="sku3.hasError('invalidSku')">sku3 is invalidSku</ngb-alert>
+    </div>
+    <div [class.error]="!myForm.controls['productName'].valid&&myForm.controls['productName'].touched">
+        <input type="text" id="productName" placeholder="productName" [formControl]="myForm.get('productName')" [(ngModel)]="productName">
+        <ngb-alert [dismissible]="false" type="danger" *ngIf="!myForm.controls['productName'].valid">sku3 is invalid</ngb-alert>
+        <ngb-alert [dismissible]="false" type="success" *ngIf="myForm.controls['productName'].hasError('required')">sku3 is required</ngb-alert>
+        <ngb-alert [dismissible]="false" type="info" *ngIf="myForm.controls['productName'].hasError('invalidSku')">sku3 is invalidSku</ngb-alert>
+    </div>
+    <br/>
+    <br/>
+    <div *ngIf="!myForm.valid">Form is invalid</div>
+    <div>
+        {{ productName }}
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
